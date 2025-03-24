@@ -84,7 +84,12 @@ export default async function Card({
             <title>{`Steam user card for ${user.personaname}`}</title>
             <foreignObject width={CARD_WIDTH} height={CARD_HEIGHT}>
                 <div
-                    className={`m-[${CARD_MARGIN}px] w-[${CARD_WIDTH - CARD_MARGIN * 2}px] h-[${CARD_HEIGHT - CARD_MARGIN * 2}px] flex items-center`}
+                    className="flex items-center"
+                    style={{
+                        margin: `${CARD_MARGIN}px`,
+                        width: `${CARD_WIDTH - CARD_MARGIN * 2}px`,
+                        height: `${CARD_HEIGHT - CARD_MARGIN * 2}px`,
+                    }}
                 >
                     <div className="space-y-2">
                         <div className="flex space-x-1">
