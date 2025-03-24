@@ -1,78 +1,42 @@
+import { z } from "zod";
+
 import { useServerT } from "@/i18n/server";
-import { ApiClient } from "@/steam-api/ApiClient";
 import { STEAM_API_SCHEMAS } from "@/steam-api/schemas";
 import type { SSRProps } from "@/types";
+import { getOwnedGames, getRecentlyPlayedGames, getUser } from "./utils";
 
-const CARD_WIDTH = 400;
-const CARD_HEIGHT = 150;
-const CARD_MARGIN = 10;
-const AVAIABLE_WIDTH = CARD_WIDTH - CARD_MARGIN * 2;
-const CARD_ICON_WIDTH = 60;
-const SPACE_1_PX = 4;
-const RECENTLY_PLAYED_GAMES_ARIA_WIDTH =
-    AVAIABLE_WIDTH - CARD_ICON_WIDTH - SPACE_1_PX;
+export const CARD_SIZE_SCHEMA = z.enum(["small", "medium", "large"]);
+export type CARD_SIZE_SCHEMA_TYPE = z.infer<typeof CARD_SIZE_SCHEMA>;
 
 export default async function Card({
     searchParams,
     params,
 }: CardProps & SSRProps) {
-    const { t } = await useServerT((await params).lang);
-
-    const { id } = await searchParams;
+    const { lang } = await params;
+    const { t } = await useServerT(lang);
+    const { id, size } = await searchParams;
     const parsedId = STEAM_API_SCHEMAS.id.parse(id);
+    const parsedSize = size ? CARD_SIZE_SCHEMA.parse(size) : "small";
 
-    const client = new ApiClient();
-    const usersResponse = await client.getSteamUser(parsedId);
-    const user = usersResponse.response.players[0];
+    const CARD_WIDTH = 400;
+    const CARD_HEIGHT =
+        parsedSize === "large" ? 490 : parsedSize === "medium" ? 184 : 150;
+    const CARD_MARGIN = 10;
+    const AVAIABLE_WIDTH = CARD_WIDTH - CARD_MARGIN * 2;
+    const CARD_ICON_WIDTH = 60;
+    const SPACE_1_PX = 4;
+    const RECENTLY_PLAYED_GAMES_ARIA_WIDTH =
+        AVAIABLE_WIDTH - CARD_ICON_WIDTH - SPACE_1_PX;
 
-    // Get recently played games
-    const recentlyPlayedGamesRes =
-        await client.getRecentlyPlayedGames(parsedId);
-    const fullGamePromises = recentlyPlayedGamesRes.response.games.map(
-        async (game) => {
-            const appId = game.appid.toString();
-            const playtime = game.playtime_2weeks;
-            const appDetail = (await client.getAppDetails(appId))[appId];
-
-            return {
-                id: appId,
-                name: appDetail.data.name,
-                header: appDetail.data.header_image,
-                playtime,
-            };
-        },
-    );
-    const fullGames = await Promise.all(fullGamePromises);
-    const sortedFullGames = fullGames.sort((a, b) => b.playtime - a.playtime);
-    const twoWeeksTotal = Math.floor(
-        sortedFullGames.reduce((acc, game) => acc + game.playtime, 0) / 60,
-    );
-
-    // Get owned games
-    const displayingOwnedGamesLength = 5;
-    const ownedGamesRes = await client.getOwnedGames(parsedId);
-    const ownedGamesTotal = ownedGamesRes.response.game_count;
-    const ownedGames = ownedGamesRes.response.games;
-    const sortedOwnedGames = ownedGames.sort(
-        (a, b) => b.playtime_forever - a.playtime_forever,
-    );
-    const displayOwnedGames = sortedOwnedGames.slice(
-        0,
-        displayingOwnedGamesLength,
-    );
-    const fullDisplayGamePromises = displayOwnedGames.map(async (game) => {
-        const appId = game.appid.toString();
-        const playtime = game.playtime_forever;
-        const appDetail = (await client.getAppDetails(appId))[appId];
-
-        return {
-            id: appId,
-            name: appDetail.data.name,
-            header: appDetail.data.header_image,
-            playtime,
-        };
-    });
-    const fullDisplayGames = await Promise.all(fullDisplayGamePromises);
+    const user = await getUser(parsedId);
+    const { twoWeeksPlaytimeTotal, games } =
+        await getRecentlyPlayedGames(parsedId);
+    const {
+        current,
+        total,
+        games: ownedGames,
+    } = await getOwnedGames(parsedId, parsedSize);
+    const ownedGamesChunks = chunkArray(ownedGames, 5);
 
     return (
         <svg
@@ -109,18 +73,17 @@ export default async function Card({
                                     </p>
                                     <p className="text-xs">
                                         {t("playtime-past-2-weeks", {
-                                            time: twoWeeksTotal,
+                                            time: twoWeeksPlaytimeTotal,
                                         })}
                                     </p>
                                 </div>
                                 <div className="flex space-x-1">
-                                    {sortedFullGames.map((game) => {
+                                    {games.map((game) => {
                                         const itemWidth = Math.floor(
                                             (RECENTLY_PLAYED_GAMES_ARIA_WIDTH -
                                                 SPACE_1_PX *
-                                                    (sortedFullGames.length -
-                                                        1)) /
-                                                sortedFullGames.length,
+                                                    (games.length - 1)) /
+                                                games.length,
                                         );
 
                                         return (
@@ -142,28 +105,35 @@ export default async function Card({
                         <div className="flex flex-col space-y-1">
                             <p className="text-white text-xs">
                                 {t("owned-games", {
-                                    displaying: displayingOwnedGamesLength,
-                                    total: ownedGamesTotal,
+                                    displaying: current,
+                                    total,
                                 })}
                             </p>
 
-                            <div className="flex space-x-1">
-                                {fullDisplayGames.map((game) => {
-                                    const itemWidth =
-                                        (AVAIABLE_WIDTH -
-                                            SPACE_1_PX *
-                                                (fullDisplayGames.length - 1)) /
-                                        fullDisplayGames.length;
+                            <div className="space-y-1">
+                                {ownedGamesChunks.map((chunk, idx) => (
+                                    // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                                    <div key={idx} className="flex space-x-1">
+                                        {chunk.map((game) => {
+                                            const itemWidth =
+                                                (AVAIABLE_WIDTH -
+                                                    SPACE_1_PX *
+                                                        (chunk.length - 1)) /
+                                                chunk.length;
 
-                                    return (
-                                        <img
-                                            src={game.header}
-                                            key={game.id}
-                                            alt={game.name}
-                                            style={{ width: `${itemWidth}px` }}
-                                        />
-                                    );
-                                })}
+                                            return (
+                                                <img
+                                                    src={game.header}
+                                                    key={game.id}
+                                                    alt={game.name}
+                                                    style={{
+                                                        width: `${itemWidth}px`,
+                                                    }}
+                                                />
+                                            );
+                                        })}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -176,5 +146,12 @@ export default async function Card({
 interface CardProps {
     searchParams: Promise<{
         id: string;
+        size?: string;
     }>;
+}
+
+function chunkArray<T>(array: T[], size: number): T[][] {
+    return Array.from({ length: Math.ceil(array.length / size) }, (_, index) =>
+        array.slice(index * size, (index + 1) * size),
+    );
 }
