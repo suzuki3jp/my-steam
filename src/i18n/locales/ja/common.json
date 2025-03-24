@@ -1,3 +1,5 @@
 {
-    "coming-soon": "近日公開..."
+    "coming-soon": "近日公開...",
+    "playtime-past-2-weeks": "{{time}} 時間 (過去 2 週間)",
+    "owned-games": "所有しているゲーム ({{total}} ゲーム中 トップ {{displaying}} ゲーム)"
 }
