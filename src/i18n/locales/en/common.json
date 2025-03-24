@@ -1,3 +1,5 @@
 {
-    "coming-soon": "Coming soon..."
+    "coming-soon": "Coming soon...",
+    "playtime-past-2-weeks": "{{time}} Hours (Past 2 weeks)",
+    "owned-games": "Owned Games (Top {{displaying}} of {{total}} games)"
 }
