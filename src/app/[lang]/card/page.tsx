@@ -1,12 +1,12 @@
-import { z } from "zod";
-
 import { useServerT } from "@/i18n/server";
 import { STEAM_API_SCHEMAS } from "@/steam-api/schemas";
 import type { SSRProps } from "@/types";
-import { getOwnedGames, getRecentlyPlayedGames, getUser } from "./utils";
-
-export const CARD_SIZE_SCHEMA = z.enum(["small", "medium", "large"]);
-export type CARD_SIZE_SCHEMA_TYPE = z.infer<typeof CARD_SIZE_SCHEMA>;
+import {
+    CARD_SIZE_SCHEMA,
+    getOwnedGames,
+    getRecentlyPlayedGames,
+    getUser,
+} from "./utils";
 
 export default async function Card({
     searchParams,

@@ -1,5 +1,9 @@
-import type { CARD_SIZE_SCHEMA_TYPE } from "@/app/[lang]/card/page";
+import { z } from "zod";
+
 import { ApiClient } from "@/steam-api/ApiClient";
+
+export const CARD_SIZE_SCHEMA = z.enum(["small", "medium", "large"]);
+export type CARD_SIZE_SCHEMA_TYPE = z.infer<typeof CARD_SIZE_SCHEMA>;
 
 export async function getUser(id: string) {
     const client = new ApiClient();
