@@ -27,9 +27,12 @@ export function middleware(req: NextRequest) {
         ) &&
         !req.nextUrl.pathname.startsWith("/_next")
     ) {
-        return NextResponse.redirect(
-            new URL(`/${lang}${req.nextUrl.pathname}`, req.url),
-        );
+        const newUrl = new URL(`/${lang}${req.nextUrl.pathname}`, req.url);
+        // Copy search params from original URL
+        req.nextUrl.searchParams.forEach((value, key) => {
+            newUrl.searchParams.set(key, value);
+        });
+        return NextResponse.redirect(newUrl);
     }
 
     if (req.headers.has("referer")) {
