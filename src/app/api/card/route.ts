@@ -1,10 +1,15 @@
+import chromium from "@sparticuz/chromium";
 import { type NextRequest, NextResponse } from "next/server";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 
 export async function GET(request: NextRequest) {
     try {
         const browser = await puppeteer.launch({
-            headless: true,
+            headless: chromium.headless,
+            defaultViewport: chromium.defaultViewport,
+            args: chromium.args,
+            executablePath: await chromium.executablePath(),
+            ignoreDefaultArgs: true,
         });
         const page = await browser.newPage();
 
