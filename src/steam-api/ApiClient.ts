@@ -22,7 +22,6 @@ export class ApiClient {
             key: this.key,
             steamids: Array.isArray(steamId) ? steamId.join(",") : steamId,
         });
-        console.log(url);
         const response = await fetch(url);
         return STEAM_API_RESPONSE_SCHEMAS.GetPlayerSummariesResponse.parse(
             await response.json(),
