@@ -54,11 +54,20 @@ export class Card {
         return { user, recentlyGames, ownedGames };
     }
 
-    private renderDom(
+    private async fetchImage(url: string): Promise<string> {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch image from ${url}: ${response.status} ${response.statusText}`);
+        }
+        const buffer = await response.arrayBuffer();
+        return `data:image/jpeg;base64,${Buffer.from(buffer).toString("base64")}`;
+    }
+
+    private async renderDom(
         data: Awaited<ReturnType<Card["fetchDataForCard"]>> & {
             t: Awaited<ReturnType<typeof useServerT>>["t"];
         },
-    ): string {
+    ): Promise<string> {
         const { t, user, recentlyGames, ownedGames } = data;
         const { width, height } = this.getDimensions();
         const chunkedOwnedGames = this.chunkArray(ownedGames.games, 5);
@@ -83,15 +92,15 @@ export class Card {
             .append("svg")
             .attr("xmlns", "http://www.w3.org/2000/svg")
             .attr("width", width)
-            .attr("height", height)
-            .attr("class", "bg-gray-800 rounded-md");
+            .attr("height", height);
 
         svg.append("title").text(`Steam user card for ${user.personaname}`);
 
         const foreign = svg
             .append("foreignObject")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", height)
+            .attr("class", "bg-gray-800 rounded-md");
 
         // Add classes from tailwindcss
         foreign.append("style").text(`
@@ -126,7 +135,7 @@ export class Card {
             .style("width", `${width - CARD_MARGIN * 2}px`)
             .style("height", `${height - CARD_MARGIN * 2}px`)
             .append("div")
-            .attr("class", "space-y-2 h-full");
+            .attr("class", "space-y-2");
 
         const topContainer = container
             .append("div")
@@ -136,7 +145,7 @@ export class Card {
         topContainer
             .append("img")
             .attr("width", CARD_ICON_WIDTH)
-            .attr("src", user.avatarmedium)
+            .attr("src", await this.fetchImage(user.avatarmedium))
             .attr("alt", "User icon")
             .attr("class", "rounded-md");
 
@@ -177,7 +186,7 @@ export class Card {
 
             topRightImageContainer
                 .append("img")
-                .attr("src", game.header)
+                .attr("src", await this.fetchImage(game.header))
                 .attr("key", game.id)
                 .attr("alt", game.name)
                 .style("width", `${itemWidth}px`);
@@ -215,7 +224,7 @@ export class Card {
 
                 chunkContainer
                     .append("img")
-                    .attr("src", game.header)
+                    .attr("src", await this.fetchImage(game.header))
                     .attr("key", game.id)
                     .attr("alt", game.name)
                     .style("width", `${itemWidth}px`);
@@ -228,7 +237,7 @@ export class Card {
     public async render(): Promise<string> {
         const { t } = await useServerT(this.lang);
         const data = await this.fetchDataForCard();
-        return this.renderDom({ ...data, t });
+        return await this.renderDom({ ...data, t });
     }
 }
 
