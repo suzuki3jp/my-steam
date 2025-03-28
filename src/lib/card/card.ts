@@ -89,15 +89,15 @@ export class Card {
             .append("svg")
             .attr("xmlns", "http://www.w3.org/2000/svg")
             .attr("width", width)
-            .attr("height", height)
-            .attr("class", "bg-gray-800 rounded-md");
+            .attr("height", height);
 
         svg.append("title").text(`Steam user card for ${user.personaname}`);
 
         const foreign = svg
             .append("foreignObject")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", height)
+            .attr("class", "bg-gray-800 rounded-md");
 
         // Add classes from tailwindcss
         foreign.append("style").text(`
