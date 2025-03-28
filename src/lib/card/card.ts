@@ -56,6 +56,9 @@ export class Card {
 
     private async fetchImage(url: string): Promise<string> {
         const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch image from ${url}: ${response.status} ${response.statusText}`);
+        }
         const buffer = await response.arrayBuffer();
         return `data:image/jpeg;base64,${Buffer.from(buffer).toString("base64")}`;
     }
