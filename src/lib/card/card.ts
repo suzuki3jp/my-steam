@@ -64,11 +64,11 @@ export class Card {
         const chunkedOwnedGames = this.chunkArray(ownedGames.games, 5);
 
         const CARD_MARGIN = 10;
-        const AVAIABLE_WIDTH = width - CARD_MARGIN * 2;
+        const AVAILABLE_WIDTH = width - CARD_MARGIN * 2;
         const CARD_ICON_WIDTH = 60;
         const SPACE_1_PX = 4;
         const RECENTLY_PLAYED_GAMES_ARIA_WIDTH =
-            AVAIABLE_WIDTH - CARD_ICON_WIDTH - SPACE_1_PX;
+            AVAILABLE_WIDTH - CARD_ICON_WIDTH - SPACE_1_PX;
 
         // > use fake dom let us can get html element
         // https://github.com/vn7n24fzkq/github-profile-summary-cards/blob/257eb2caef4019d7aaf9b67e276f1f88f3e8b723/src/templates/card.ts#L18
@@ -210,7 +210,7 @@ export class Card {
 
             for (const game of chunk) {
                 const itemWidth =
-                    (AVAIABLE_WIDTH - SPACE_1_PX * (chunk.length - 1)) /
+                    (AVAILABLE_WIDTH - SPACE_1_PX * (chunk.length - 1)) /
                     chunk.length;
 
                 chunkContainer
