@@ -95,6 +95,10 @@ export class Card {
 
         // Add classes from tailwindcss
         foreign.append("style").text(`
+            * {
+                font-family: "Yu Gothic UI", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            }
+
             .flex { display: flex; }
             .flex-col { flex-direction: column; }
             .items-center { align-items: center; }
