@@ -3,6 +3,6 @@
 
 <p align="center">
     <a href="https://my-steam.suzuki3.jp/">
-        <img src="https://my-steam.suzuki3.jp/api/card?id=76561199481414496&size=small" />
+        <img src="https://my-steam.suzuki3.jp/api/card?id=76561199481414496" />
     </a>
 </p>

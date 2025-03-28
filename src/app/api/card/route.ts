@@ -24,6 +24,7 @@ export async function GET(request: Request) {
         headers: {
             "Content-Type": "image/svg+xml",
             "Cache-Control": "no-cache, no-store, must-revalidate",
+            "Access-Control-Allow-Origin": "*",
         },
     });
 }
