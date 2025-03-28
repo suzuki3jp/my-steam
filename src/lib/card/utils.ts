@@ -1,9 +1,4 @@
-import { z } from "zod";
-
 import { ApiClient } from "@/steam-api/ApiClient";
-
-export const CARD_SIZE_SCHEMA = z.enum(["small", "medium", "large"]);
-export type CARD_SIZE_SCHEMA_TYPE = z.infer<typeof CARD_SIZE_SCHEMA>;
 
 export async function getUser(id: string) {
     const client = new ApiClient();
@@ -37,12 +32,7 @@ export async function getRecentlyPlayedGames(id: string) {
     return { twoWeeksPlaytimeTotal, games };
 }
 
-export async function getOwnedGames(
-    id: string,
-    size: CARD_SIZE_SCHEMA_TYPE = "small",
-) {
-    const shouldReturnOwnedGames =
-        size === "large" ? 50 : size === "medium" ? 10 : 5;
+export async function getOwnedGames(id: string, count: number) {
     const client = new ApiClient();
     const ownedGamesRes = await client.getOwnedGames(id);
     const total = ownedGamesRes.response.game_count;
@@ -50,10 +40,7 @@ export async function getOwnedGames(
     const sortedOwnedGames = ownedGames.sort(
         (a, b) => b.playtime_forever - a.playtime_forever,
     );
-    const returningOwnedGames = sortedOwnedGames.slice(
-        0,
-        shouldReturnOwnedGames,
-    );
+    const returningOwnedGames = sortedOwnedGames.slice(0, count);
     const fullReturingGamePromises = returningOwnedGames.map(async (game) => {
         const appId = game.appid.toString();
         const playtime = game.playtime_forever;
@@ -68,5 +55,5 @@ export async function getOwnedGames(
     });
     const games = await Promise.all(fullReturingGamePromises);
 
-    return { current: shouldReturnOwnedGames, total, games };
+    return { current: count, total, games };
 }
