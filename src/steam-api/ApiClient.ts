@@ -48,7 +48,12 @@ export class ApiClient {
         const url = `https://store.steampowered.com/api/appdetails?appids=${
             appId
         }`;
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            cache: "force-cache",
+            next: {
+                revalidate: 60 * 60 * 24, // 1 day
+            },
+        });
         return STEAM_API_RESPONSE_SCHEMAS.AppDetailsResponse.parse(
             await response.json(),
         );
