@@ -21,19 +21,33 @@ export class Card {
      * @returns Dimensions in pixels
      */
     private getDimensions(): { width: number; height: number } {
+        const CARD_WIDTH = 400;
+
+        const LARGE_CARD_HEIGHT = 490;
+        const MEDIUM_CARD_HEIGHT = 184;
+        const SMALL_CARD_HEIGHT = 150;
+
         return {
-            width: 400,
+            width: CARD_WIDTH,
             height:
                 this.size === "large"
-                    ? 490
+                    ? LARGE_CARD_HEIGHT
                     : this.size === "medium"
-                      ? 184
-                      : 150,
+                      ? MEDIUM_CARD_HEIGHT
+                      : SMALL_CARD_HEIGHT,
         };
     }
 
     private getHowManyGamesToShow(): number {
-        return this.size === "large" ? 50 : this.size === "medium" ? 10 : 5;
+        const LARGE_GAME_COUNT = 50;
+        const MEDIUM_GAME_COUNT = 10;
+        const SMALL_GAME_COUNT = 5;
+
+        return this.size === "large"
+            ? LARGE_GAME_COUNT
+            : this.size === "medium"
+              ? MEDIUM_GAME_COUNT
+              : SMALL_GAME_COUNT;
     }
 
     private chunkArray<T>(arr: T[], chunkSize: number): T[][] {
@@ -57,7 +71,9 @@ export class Card {
     private async fetchImage(url: string): Promise<string> {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`Failed to fetch image from ${url}: ${response.status} ${response.statusText}`);
+            throw new Error(
+                `Failed to fetch image from ${url}: ${response.status} ${response.statusText}`,
+            );
         }
         const buffer = await response.arrayBuffer();
         return `data:image/jpeg;base64,${Buffer.from(buffer).toString("base64")}`;
