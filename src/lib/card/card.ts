@@ -139,7 +139,7 @@ export class Card {
             .append("div")
             .attr("class", "h-full flex items-center")
             .append("div")
-            .attr("class", "space-y-2");
+            .attr("class", "h-full space-y-2");
 
         const topContainer = container
             .append("div")
