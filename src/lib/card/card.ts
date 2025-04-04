@@ -57,7 +57,9 @@ export class Card {
     private async fetchImage(url: string): Promise<string> {
         const response = await fetch(url);
         if (!response.ok) {
-            throw new Error(`Failed to fetch image from ${url}: ${response.status} ${response.statusText}`);
+            throw new Error(
+                `Failed to fetch image from ${url}: ${response.status} ${response.statusText}`,
+            );
         }
         const buffer = await response.arrayBuffer();
         return `data:image/jpeg;base64,${Buffer.from(buffer).toString("base64")}`;
@@ -135,7 +137,9 @@ export class Card {
             .style("width", `${width - CARD_MARGIN * 2}px`)
             .style("height", `${height - CARD_MARGIN * 2}px`)
             .append("div")
-            .attr("class", "space-y-2 h-full");
+            .attr("class", "h-full flex items-center")
+            .append("div")
+            .attr("class", "space-y-2");
 
         const topContainer = container
             .append("div")
