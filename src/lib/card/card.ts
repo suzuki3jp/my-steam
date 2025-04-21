@@ -151,7 +151,9 @@ export class Card {
             .style("width", `${width - CARD_MARGIN * 2}px`)
             .style("height", `${height - CARD_MARGIN * 2}px`)
             .append("div")
-            .attr("class", "space-y-2 h-full");
+            .attr("class", "h-full flex items-center")
+            .append("div")
+            .attr("class", "h-full space-y-2");
 
         const topContainer = container
             .append("div")
