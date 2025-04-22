@@ -5,5 +5,5 @@ export default async function Home({ params }: SSRProps) {
     const { lang } = await params;
     const { t } = await useServerT(lang);
 
-    return <h1 style={{ fontWeight: "bold" }}>{t("coming-soon")}</h1>;
+    return <h1>{t("coming-soon")}</h1>;
 }

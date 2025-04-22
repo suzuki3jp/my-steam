@@ -2,7 +2,7 @@ import { dir } from "i18next";
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { fontMono, fontSans } from "@/fonts";
+import { roboto } from "@/fonts";
 import { supportedLangs } from "@/i18n/settings";
 import type { SSRProps } from "@/types";
 
@@ -26,9 +26,7 @@ export default async function RootLayout({
     const { lang } = await params;
     return (
         <html lang={lang} dir={dir(lang)}>
-            <body className={`${fontMono.variable} ${fontSans.variable}`}>
-                {children}
-            </body>
+            <body className={`${roboto.className}`}>{children}</body>
         </html>
     );
 }
