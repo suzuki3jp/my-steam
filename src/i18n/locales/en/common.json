@@ -1,5 +1,12 @@
 {
     "coming-soon": "Coming soon...",
     "playtime-past-2-weeks": "{{time}} Hours (Past 2 weeks)",
-    "owned-games": "Owned Games (Top {{displaying}} of {{total}} games)"
+    "owned-games": "Owned Games (Top {{displaying}} of {{total}} games)",
+    "header": {
+        "features": "Features",
+        "examples": "Examples",
+        "api": "API",
+        "github": "GitHub",
+        "menu": "Menu"
+    }
 }

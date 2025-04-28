@@ -1,5 +1,12 @@
 {
     "coming-soon": "近日公開...",
     "playtime-past-2-weeks": "{{time}} 時間 (過去 2 週間)",
-    "owned-games": "所有しているゲーム ({{total}} ゲーム中 トップ {{displaying}} ゲーム)"
+    "owned-games": "所有しているゲーム ({{total}} ゲーム中 トップ {{displaying}} ゲーム)",
+    "header": {
+        "features": "機能",
+        "examples": "サンプル",
+        "api": "API",
+        "github": "GitHub",
+        "menu": "メニュー"
+    }
 }
