@@ -50,5 +50,40 @@
             "title": "Large",
             "description": "A large-sized profile card. Displays your 50 recently played games and top 50 owned games."
         }
+    },
+    "generator": {
+        "profile-form": {
+            "title": "Profile Information",
+            "description": "Please enter your Steam ID. Your profile must be set to public.",
+            "steam-id": {
+                "label": "Steam ID",
+                "placeholder": "76561199481414496"
+            },
+            "generating": "Generating...",
+            "generate": "Generate"
+        },
+        "options": {
+            "title": "Options",
+            "description": "You can customize the display options for the generated image.",
+            "language": {
+                "label": "Language",
+                "description": "Select the language to display on the image."
+            },
+            "size": {
+                "label": "Size",
+                "description": "Select the size of the image.",
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large"
+            }
+        },
+        "preview": {
+            "title": "Preview",
+            "description": "This is a preview of the generated image.",
+            "url": "URL",
+            "markdown": "Markdown Format",
+            "html": "HTML Format",
+            "before-enter": "Enter your Steam ID to see a preview here."
+        }
     }
 }

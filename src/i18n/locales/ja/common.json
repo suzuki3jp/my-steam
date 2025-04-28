@@ -51,5 +51,38 @@
             "title": "ラージ",
             "description": "大きなサイズのプロフィールカード。最近プレイしたゲームと所持しているゲームの上位50個を表示します。"
         }
+    },
+    "generator": {
+        "profile-form": {
+            "title": "プロフィール情報",
+            "description": "Steam の ID を入力してください。プロフィールは公開状態である必要があります。",
+            "steam-id": {
+                "label": "Steam ID",
+                "placeholder": "76561199481414496"
+            }
+        },
+        "options": {
+            "title": "オプション",
+            "description": "生成する画像の表示オプションをカスタマイズできます。",
+            "language": {
+                "label": "言語",
+                "description": "画像に表示する言語を選択します。"
+            },
+            "size": {
+                "label": "サイズ",
+                "description": "画像のサイズを選択します。",
+                "small": "スモール",
+                "medium": "ミディアム",
+                "large": "ラージ"
+            }
+        },
+        "preview": {
+            "title": "プレビュー",
+            "description": "生成される画像のプレビューです。",
+            "url": "URL",
+            "markdown": "Markdown 形式",
+            "html": "HTML 形式",
+            "before-enter": "Steam ID を入力するとここにプレビューが表示されます。"
+        }
     }
 }

@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { Provider } from "@/components/provider";
 import { roboto } from "@/fonts";
 import { useServerT } from "@/i18n/server";
 import { supportedLangs } from "@/i18n/settings";
@@ -32,9 +33,11 @@ export default async function RootLayout({
     return (
         <html lang={lang} dir={dir(lang)}>
             <body className={`${roboto.className}`}>
-                <Header t={t} />
-                {children}
-                <Footer t={t} />
+                <Provider>
+                    <Header t={t} />
+                    {children}
+                    <Footer t={t} />
+                </Provider>
             </body>
         </html>
     );
