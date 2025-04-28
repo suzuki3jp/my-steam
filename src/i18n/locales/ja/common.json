@@ -1,5 +1,88 @@
 {
     "coming-soon": "近日公開...",
     "playtime-past-2-weeks": "{{time}} 時間 (過去 2 週間)",
-    "owned-games": "所有しているゲーム ({{total}} ゲーム中 トップ {{displaying}} ゲーム)"
+    "owned-games": "所有しているゲーム ({{total}} ゲーム中 トップ {{displaying}} ゲーム)",
+    "header": {
+        "features": "機能",
+        "examples": "サンプル",
+        "api": "API",
+        "github": "GitHub",
+        "menu": "メニュー"
+    },
+    "hero-section": {
+        "title": "Steam プロフィールを <1>一枚の画像に可視化</1>",
+        "description": "MySteam で Steam のプロフィールカードを生成しよう。GitHub や あなたのウェブサイトに簡単に埋め込むことができます。",
+        "get-started": "今すぐ始める",
+        "view-source": "ソースコードを見る"
+    },
+    "features-section": {
+        "word": "機能",
+        "title": "あなたのSteamデータを美しく表示",
+        "description": "MySteamは、Steamのゲームライブラリとプレイ履歴を視覚的に表現するための様々な機能を提供します。",
+        "profile-card-gen": {
+            "title": "プロフィールカード画像生成",
+            "description": "最近プレイしたゲームやライブラリを一枚の画像として生成",
+            "content": "あなたのSteamプロフィールから最新のデータを取得し、カスタマイズ可能な一枚の画像として提供します。"
+        },
+        "dynamic-svg": {
+            "title": "動的SVGエンドポイント",
+            "description": "軽量で高品質なSVGフォーマットでデータを視覚化",
+            "content": "GitHubプロフィールやウェブサイトに簡単に埋め込める動的SVGを提供します。"
+        },
+        "open-source": {
+            "title": "オープンソース",
+            "description": "完全にオープンソースで、自由にカスタマイズ可能",
+            "content": "コードはGitHubで公開されており、自由に改変・拡張することができます。"
+        }
+    },
+    "examples-section": {
+        "word": "サンプル",
+        "title": "様々な表示スタイル",
+        "description": "MySteamが提供する様々な表示スタイルをご覧ください。",
+        "small": {
+            "title": "スモール",
+            "description": "小さなサイズのプロフィールカード。最近プレイしたゲームと所持しているゲームの上位5つを表示します。"
+        },
+        "medium": {
+            "title": "ミディアム",
+            "description": "中サイズのプロフィールカード。最近プレイしたゲームと所持しているゲームの上位10個を表示します。"
+        },
+        "large": {
+            "title": "ラージ",
+            "description": "大きなサイズのプロフィールカード。最近プレイしたゲームと所持しているゲームの上位50個を表示します。"
+        }
+    },
+    "generator": {
+        "profile-form": {
+            "title": "プロフィール情報",
+            "description": "Steam の ID を入力してください。プロフィールは公開状態である必要があります。",
+            "steam-id": {
+                "label": "Steam ID",
+                "placeholder": "76561199481414496"
+            }
+        },
+        "options": {
+            "title": "オプション",
+            "description": "生成する画像の表示オプションをカスタマイズできます。",
+            "language": {
+                "label": "言語",
+                "description": "画像に表示する言語を選択します。"
+            },
+            "size": {
+                "label": "サイズ",
+                "description": "画像のサイズを選択します。",
+                "small": "スモール",
+                "medium": "ミディアム",
+                "large": "ラージ"
+            }
+        },
+        "preview": {
+            "title": "プレビュー",
+            "description": "生成される画像のプレビューです。",
+            "url": "URL",
+            "markdown": "Markdown 形式",
+            "html": "HTML 形式",
+            "before-enter": "Steam ID を入力するとここにプレビューが表示されます。"
+        }
+    }
 }

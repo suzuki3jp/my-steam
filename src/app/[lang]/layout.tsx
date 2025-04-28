@@ -2,7 +2,11 @@ import { dir } from "i18next";
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { fontMono, fontSans } from "@/fonts";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
+import { Provider } from "@/components/provider";
+import { roboto } from "@/fonts";
+import { useServerT } from "@/i18n/server";
 import { supportedLangs } from "@/i18n/settings";
 import type { SSRProps } from "@/types";
 
@@ -24,10 +28,16 @@ export default async function RootLayout({
     } & SSRProps
 >) {
     const { lang } = await params;
+    const { t } = await useServerT(lang);
+
     return (
         <html lang={lang} dir={dir(lang)}>
-            <body className={`${fontMono.variable} ${fontSans.variable}`}>
-                {children}
+            <body className={`${roboto.className}`}>
+                <Provider>
+                    <Header t={t} />
+                    {children}
+                    <Footer t={t} />
+                </Provider>
             </body>
         </html>
     );
