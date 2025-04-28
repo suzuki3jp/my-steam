@@ -32,23 +32,23 @@
             "title": "Open Source",
             "description": "Completely open source and freely customizable",
             "content": "The code is published on GitHub and can be freely modified and extended."
+        }
+    },
+    "examples-section": {
+        "word": "Examples",
+        "title": "Various Display Styles",
+        "description": "Explore the various display styles offered by MySteam.",
+        "small": {
+            "title": "Small",
+            "description": "A small-sized profile card. Displays your 5 recently played games and top 5 owned games."
         },
-        "examples-section": {
-            "word": "Examples",
-            "title": "Various Display Styles",
-            "description": "Explore the various display styles offered by MySteam.",
-            "small": {
-                "title": "Small",
-                "description": "A small-sized profile card. Displays your 5 recently played games and top 5 owned games."
-            },
-            "medium": {
-                "title": "Medium",
-                "description": "A medium-sized profile card. Displays your 10 recently played games and top 10 owned games."
-            },
-            "large": {
-                "title": "Large",
-                "description": "A large-sized profile card. Displays your 50 recently played games and top 50 owned games."
-            }
+        "medium": {
+            "title": "Medium",
+            "description": "A medium-sized profile card. Displays your 10 recently played games and top 10 owned games."
+        },
+        "large": {
+            "title": "Large",
+            "description": "A large-sized profile card. Displays your 50 recently played games and top 50 owned games."
         }
     }
 }
