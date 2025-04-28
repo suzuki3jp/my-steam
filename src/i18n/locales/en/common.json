@@ -13,5 +13,25 @@
         "description": "Generate your Steam profile card with MySteam. You can easily embed it on GitHub or your website.",
         "get-started": "Get Started",
         "view-source": "View Source"
+    },
+    "features-section": {
+        "word": "Features",
+        "title": "Beautifully Display Your Steam Data",
+        "description": "MySteam provides various features to visually represent your Steam game library and play history.",
+        "profile-card-gen": {
+            "title": "Profile Card Image Generation",
+            "description": "Generate your recently played games and library as a single image",
+            "content": "Fetch the latest data from your Steam profile and provide it as a customizable single image."
+        },
+        "dynamic-svg": {
+            "title": "Dynamic SVG Endpoint",
+            "description": "Visualize data in lightweight, high-quality SVG format",
+            "content": "Provides dynamic SVGs that can be easily embedded in GitHub profiles and websites."
+        },
+        "open-source": {
+            "title": "Open Source",
+            "description": "Completely open source and freely customizable",
+            "content": "The code is published on GitHub and can be freely modified and extended."
+        }
     }
 }
