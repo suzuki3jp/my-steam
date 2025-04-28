@@ -6,7 +6,12 @@
         "features": "Features",
         "examples": "Examples",
         "api": "API",
-        "github": "GitHub",
-        "menu": "Menu"
+        "github": "GitHub"
+    },
+    "hero-section": {
+        "title": "Visualize your Steam profile in <1>a single image</1>",
+        "description": "Generate your Steam profile card with MySteam. You can easily embed it on GitHub or your website.",
+        "get-started": "Get Started",
+        "view-source": "View Source"
     }
 }

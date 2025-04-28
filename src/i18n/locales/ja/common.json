@@ -8,5 +8,11 @@
         "api": "API",
         "github": "GitHub",
         "menu": "メニュー"
+    },
+    "hero-section": {
+        "title": "Steam プロフィールを <1>一枚の画像に可視化</1>",
+        "description": "MySteam で Steam のプロフィールカードを生成しよう。GitHub や あなたのウェブサイトに簡単に埋め込むことができます。",
+        "get-started": "今すぐ始める",
+        "view-source": "ソースコードを見る"
     }
 }
