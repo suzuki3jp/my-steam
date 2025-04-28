@@ -2,6 +2,7 @@ import { dir } from "i18next";
 import type { Metadata } from "next";
 import "./globals.css";
 
+import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { roboto } from "@/fonts";
 import { useServerT } from "@/i18n/server";
@@ -33,6 +34,7 @@ export default async function RootLayout({
             <body className={`${roboto.className}`}>
                 <Header t={t} />
                 {children}
+                <Footer t={t} />
             </body>
         </html>
     );
