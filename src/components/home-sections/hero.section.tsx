@@ -14,7 +14,7 @@ export interface HeroSectionProps {
 
 export function HeroSection({ t }: HeroSectionProps) {
     return (
-        <section className="w-full py-12 lg:py-48 bg-gradient-to-b from-background to-background/90">
+        <section className="w-full py-12 lg:py-32 bg-gradient-to-b from-background to-background/90">
             <div className="w-full px-4 sm:px-6 md:px-12 lg:px-16 xl:px-24">
                 <div className="grid gap-8 lg:grid-cols-[1fr_400px] lg:gap-16 xl:grid-cols-[1fr_500px]">
                     <div className="flex flex-col justify-center space-y-4">
@@ -56,7 +56,7 @@ export function HeroSection({ t }: HeroSectionProps) {
                             </Link>
                         </div>
                     </div>
-                    <div className="mx-auto flex items-center justify-center w-full max-w-[400px]">
+                    <div className="mx-auto flex items-center justify-center w-full max-w-[400px] lg:max-w-[600px]">
                         <div className="relative w-full rounded-lg border bg-background p-2 shadow-xl">
                             <Image
                                 src={LargeImage}
