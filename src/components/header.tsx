@@ -1,6 +1,6 @@
 import type { TFunction } from "i18next";
 import { Github, Menu } from "lucide-react";
-import Link from "next/Link";
+import Link from "next/link";
 
 import { Icon } from "@/components/icon";
 import { Button } from "@/components/ui/button";

@@ -1,5 +1,5 @@
 import type { TFunction } from "i18next";
-import Link from "next/Link";
+import Link from "next/link";
 
 import { GITHUB_LINK } from "@/constants";
 
