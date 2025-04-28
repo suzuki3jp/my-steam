@@ -26,7 +26,7 @@ export function FeaturesSection({ t }: FeaturesSectionProps) {
             id="features"
             className="w-full py-12 md:py-24 lg:py-32 bg-muted/40"
         >
-            <div className="container px-4 sm:px-6 md:px-12 lg:px-16 xl:px-24">
+            <div className="w-full px-4 sm:px-6 md:px-12 lg:px-16 xl:px-24">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
                     <div className="space-y-2">
                         <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">
