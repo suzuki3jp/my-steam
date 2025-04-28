@@ -1,5 +1,6 @@
 import type { SSRProps } from "@/types";
 
+import { ExampleSection } from "@/components/home-sections/example.section";
 import { FeaturesSection } from "@/components/home-sections/features.section";
 import { HeroSection } from "@/components/home-sections/hero.section";
 import { useServerT } from "@/i18n/server";
@@ -12,6 +13,7 @@ export default async function Home({ params }: SSRProps) {
         <main>
             <HeroSection t={t} />
             <FeaturesSection t={t} />
+            <ExampleSection t={t} />
         </main>
     );
 }
