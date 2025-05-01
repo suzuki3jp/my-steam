@@ -1,5 +1,8 @@
 <h1 align="center">MySteam</h1>
-<div align="center">Generate a card of your steam profile and games!</div>
+<div align="center">
+    Generate a card of your steam profile and games! | 
+    <a href="https://my-steam.suzuki3.jp">my-steam.suzuki3.jp</a>
+</div>
 
 <p align="center">
     <a href="https://my-steam.suzuki3.jp/">
