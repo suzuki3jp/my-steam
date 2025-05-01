@@ -80,6 +80,8 @@
         "preview": {
             "title": "Preview",
             "description": "This is a preview of the generated image.",
+            "download-img": "Download via PNG",
+            "download": "Download",
             "url": "URL",
             "markdown": "Markdown Format",
             "html": "HTML Format",

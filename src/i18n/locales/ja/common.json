@@ -79,6 +79,8 @@
         "preview": {
             "title": "プレビュー",
             "description": "生成される画像のプレビューです。",
+            "download-img": "PNG 形式でダウンロード",
+            "download": "ダウンロード",
             "url": "URL",
             "markdown": "Markdown 形式",
             "html": "HTML 形式",

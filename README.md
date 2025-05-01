@@ -9,6 +9,7 @@
 
 # ✨ Features
 - **Dynamic**: The card content will be dynamically generated according to your Steam status.
+- **Static**: You can download your Steam profile card as a static PNG file
 - **i18n**: Support multiple languages (English, Japanese)
 
 # 🙏 Special Thanks
