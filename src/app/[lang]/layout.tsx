@@ -10,10 +10,17 @@ import { useServerT } from "@/i18n/server";
 import { supportedLangs } from "@/i18n/settings";
 import type { SSRProps } from "@/types";
 
-export const metadata: Metadata = {
-    title: "MySteam",
-    description: "Generate a card of your steam profile and games.",
-};
+export async function generateMetadata({
+    params,
+}: SSRProps): Promise<Metadata> {
+    const { lang } = await params;
+    const { t } = await useServerT(lang);
+
+    return {
+        title: t("meta.title"),
+        description: t("meta.description"),
+    };
+}
 
 export const generateStaticParams = () => {
     return supportedLangs.map((lang) => ({ lang }));
