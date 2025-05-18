@@ -1,4 +1,8 @@
 {
+    "meta": {
+        "title": "MySteam - Generate Your Steam Profile Card",
+        "description": "Generate your Steam profile card with MySteam. You can easily embed it on GitHub or your website."
+    },
     "coming-soon": "Coming soon...",
     "playtime-past-2-weeks": "{{time}} Hours (Past 2 weeks)",
     "owned-games": "Owned Games (Top {{displaying}} of {{total}} games)",
