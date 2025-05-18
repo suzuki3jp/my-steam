@@ -27,6 +27,7 @@ export function HeroSection({ t }: HeroSectionProps) {
                                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500" />
                                         ),
                                     }}
+                                    t={t}
                                 />
                             </h1>
                             <p className="max-w-[600px] text-muted-foreground text-sm sm:text-base md:text-xl">
